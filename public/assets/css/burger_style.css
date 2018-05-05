@@ -1,0 +1,13 @@
+body {
+    background-color: rgb(226, 43, 43);
+    font-family: 'Titillium Web', sans-serif;
+}
+
+#order-content h3 {
+    font-family: 'Rubik Mono One', sans-serif;
+}
+
+#burger-img {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
