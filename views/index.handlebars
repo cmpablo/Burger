@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row mt-5" id="order-content">
+
+        <!------------------- ORDER HERE - LEFT SIDE ------------------->
+        <div class="col-md-5">
+            <h3>Order Here
+                <span class="far fa-hand-point-down"></span>
+            </h3>
+            <p>Order anything your heart's desire. Cheese? Do it. Mushrooms? Do it. Foie gras? Sure, why not. Fried egg? Yesssssssssss!</p>
+
+            <form class="create-form">
+
+                <div class="form-group">
+                    <textarea class="form-control" id="orderInput" rows="1"></textarea>
+                </div>
+                <button type="submit" class="btn btn-dark mt-3" id="submitOrder">Submit</button>
+
+            </form>
+        </div>
+
+        <div class="col-md-1"></div>
+
+        <!------------ ORDER UP + BURGERS EATED - RIGHT SIDE ------------>
+        <div class="col-md-6">
+
+            <div class="row mt-2">
+                <h3>Order Up!</h3>
+            </div>
+            <div class="row">
+                <ul>
+                    {{#each burgers}} {{#unless this.devoured}}
+                    <li>
+                        <p>{{this.id}}. {{this.burger_name}}</p>
+                        <button data-id="{{this.id}}" class="devourBtn">Devour</button>
+                    </li>
+                    {{/unless}} {{/each}}
+                </ul>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+                <h3>Da Burger is Eated</h3>
+            </div>
+            <div class="row">
+                <ul>
+                    {{#each burgers}} {{#if this.devoured}}
+                    <li>
+                        <p>{{this.id}}. {{this.burger_name}}</p>
+                        <button data-id="{{this.id}}" class="deleteBtn">Delete</button>
+                    </li>
+                    {{/if}} {{/each}}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>

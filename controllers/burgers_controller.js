@@ -1,123 +1,45 @@
 var express = require("express");
-var bodyParser = require("body-parser");
+var router = express.Router();
+///// import the model to use its database functions
+var burger = require("../models/burger.js");
 
-var app = express();
-
-// set the port
-var PORT = process.env.PORT || 8080;
-
-// push static content for the app from the "public" directory
-app.use(express.static("public"));
-
-// sets up the express app to handle data parsing
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(bodyParser.json());
-
-var exphbs = require("express-handlebars");
-
-app.engine("handlebars", exphbs({
-    defaultLayout: "main"
-}));
-app.set("view engine", "handlebars");
-
-var mysql = require("mysql");
-
-var connection = mysql.createConnection({
-    port: 8889,
-    host: "localhost",
-    user: "root",
-    password: "root",
-    database: "burgers_db"
+///// create routes
+// redirect to index
+router.get("/", function(req, res) {
+    res.redirect("/index");  
 });
 
-connection.connect(function (err) {
-    if (err) {
-        console.error("error connecting: " + err.stack);
-        return;
-    }
-    console.log("connected as id " + connection.threadId);
-});
-
-///// serve index.handlebars to the root route - display burgers already in db
-app.get("/index", function (req, res) {
-    connection.query("SELECT * FROM burgers;", function (err, data) {
-        if (err) {
-            return res.status(500).end();
-        }
-
-        res.render("index", {
-            burgers: data
-        });
+// index
+router.get("/index", function(req, res) {
+    burger.selectAll(function(data) {
+        var hbsObject = { burgers: data};
     });
 });
 
-///// show the user the individual burger and the button to devour the burger
-// app.get("/:id", function (req, res) {
-//     connection.query("SELECT * FROM burger where id = ?", [req.params.id], function (err, data) {
-//         if (err) {
-//             return res.status(500).end();
-//         }
-
-//         console.log(data);
-//         res.render("single-quote", data[0]); // render single-quote.handlbars
-//     });
-// });
-
-///// add burger to database from submit
-app.post("/api/burgers", function (req, res) {
-    connection.query("INSERT INTO burgers_db (burger_name) VALUES ?", [req.body.burger_name], function (
-        err,
-        result
-    ) {
-        if (err) {
-            // If an error occurred, send a generic server failure
-            return res.status(500).end();
-        }
-
-        // Send back the ID of the new quote
-        res.json({
-            id: result.insertId
-        });
+// add a burger
+router.post("/burger", function(req, res) {
+    burger.insertOne(req.body.burger_name, function() {
+        res.redirect("/index");
     });
 });
 
-///// delete
-// app.delete("/api/quotes/:id", function (req, res) {
-//     connection.query("DELETE FROM quotes WHERE id = ?", [req.params.id], function (err, result) {
-//         if (err) {
-//             // If an error occurred, send a generic server failure
-//             return res.status(500).end();
-//         } else if (result.affectedRows === 0) {
-//             // If no rows were changed, then the ID must not exist, so 404
-//             return res.status(404).end();
-//         }
-//         res.status(200).end();
+// devour a burger
+router.put("/burger/:id", function(req, res) {
+    var condition = "id= " + req.params.id;
 
-//     });
-// });
+    console.log("devoured", condition);
 
-///// Update a burger by an id and then redirect to the root route.
-app.put("/api/burgers/:id", function (req, res) {
-    connection.query(
-        "UPDATE quotes SET burger_name = ?, devoured = ? WHERE id = ?", [req.body.burger_name, req.body.devoured, req.params.id],
-        function (err, result) {
-            if (err) {
-                // If an error occurred, send a generic server failure
-                return res.status(500).end();
-            } else if (result.changedRows === 0) {
-                // If no rows were changed, then the ID must not exist, so 404
-                return res.status(404).end();
-            }
+    burger.updateOne({
+        devoured: req.body.devoured
+    }, condition, function(result) {
+        if (result.changedRows === 0) {
+            return res. status(404).end();
+        } else {
+            res.redirect("/index");
             res.status(200).end();
-
         }
-    );
+    });
 });
 
-// Start our server so that it can begin listening to client requests.
-app.listen(PORT, function () {
-    // Log (server-side) when our server has started
-    console.log("Server listening on: http://localhost:" + PORT);
-});
+// export routes for server.js to use
+module.exports = router;

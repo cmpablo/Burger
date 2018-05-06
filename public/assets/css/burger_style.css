@@ -1,13 +1,35 @@
 body {
-    background-color: rgb(226, 43, 43);
     font-family: 'Titillium Web', sans-serif;
+    color: #fceed9;
+    background-image: linear-gradient(
+    to right,
+    #EF5760,
+    #D63C4C,
+    #ED1C24)
+
 }
 
 #order-content h3 {
     font-family: 'Rubik Mono One', sans-serif;
+    color: #fceed9;
+    z-index: 1;
 }
 
 #burger-img {
-    opacity: 0.4;
-    filter: alpha(opacity=40);
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    height: 60%;
+    z-index: 0;
+}
+
+#order-content span {
+    font-size: 40px;
+}
+
+textarea {
+    width: 450px;
+    resize: none;
 }

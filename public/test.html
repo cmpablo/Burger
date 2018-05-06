@@ -6,14 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="assets/imgs/favicon.ico" type="image/x-icon">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <!-- import fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One|Titillium+Web" rel="stylesheet">
+    <!-- import css -->
     <link rel="stylesheet" href="assets/css/reset.css" type="text/css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/burger_style.css" type="text/css" />
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- <script src="/assets/js/burger.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <title>EAT da BURGER</title>
 </head>
 
@@ -21,41 +22,61 @@
     <div class="container-fluid">
 
         <div class="row">
-            <img src="assets/imgs/eatDaBurger_500.png" id="logo" />
+            <img src="assets/imgs/eatDaBurger.png" id="logo" />
             <!-- {{{ body }}} -->
         </div>
 
-        <div class="row" id="order-content">
+        <div class="container">
+            <div class="row mt-5" id="order-content">
 
-            <!-- ORDER HERE -->
-            <div class="col-md-6">
-                <h5></h5>
-                <h3>Order Here</h3>
-            </div>
-
-            <!-- ORDER UP + BURGERS EATED -->
-            <div class="col-md-6">
-
-                <div class="row">
-                    <h3>Order Up!</h3>
+                <!-- ORDER HERE -->
+                <div class="col-md-5">
+                    <h3>Order Here
+                        <span class="far fa-hand-point-down"></span>
+                    </h3>
+                    <p>Order anything your heart's desire. Cheese? Do it. Mushrooms? Do it. Foie gras? Sure, why not. Fried egg? Yesssssssssss!</p>
+                    <form>
+                        <div class="form-group">
+                            <textarea class="form-control" id="orderInput" rows="1"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-dark mt-1" id="submitOrder">Submit</button>
+                    </form>
                 </div>
-                <div class="row">
-                    <h3>Da Burger is Eated</h3>
-                </div>
 
+                <div class="col-md-1"></div>
+
+                <!-- ORDER UP + BURGERS EATED -->
+                <div class="col-md-6">
+
+                    <div class="row mt-2">
+                        <h3>Order Up!</h3>
+                    </div>
+                    <div class="row">
+                        <ul>
+                            <li>
+                                <p>Some text about a burger</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <h3>Da Burger is Eated</h3>
+                    </div>
+                    <div class="row">
+                        <p>Some text about a burger</p>
+                    </div>
+
+                </div>
             </div>
         </div>
 
         <div class="row">
-                <div class="col-md-8"></div>
-            <div class="col-md-4">
-                <img src="assets/imgs/burger2.png" id="burger-img" />
-            </div>
+            <img src="assets/imgs/burger_crop.png" id="burger-img" />
         </div>
 
     </div>
 
-    </div>
 </body>
 
 </html>
