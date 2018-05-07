@@ -13,18 +13,19 @@ router.get("/", function(req, res) {
 router.get("/index", function(req, res) {
     burger.selectAll(function(data) {
         var hbsObject = { burgers: data};
+        res.render("index", hbsObject);
     });
 });
 
-// add a burger
-router.post("/burger", function(req, res) {
+//add a burger
+router.post("/burgers", function(req, res) {
     burger.insertOne(req.body.burger_name, function() {
         res.redirect("/index");
     });
 });
 
-// devour a burger
-router.put("/burger/:id", function(req, res) {
+//devour a burger
+router.post("/burgers/:id", function(req, res) {
     var condition = "id= " + req.params.id;
 
     console.log("devoured", condition);

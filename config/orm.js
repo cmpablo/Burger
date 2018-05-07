@@ -2,8 +2,7 @@ var connection = require("../config/connection.js");
 
 var orm = {
     selectAll: function (table, callback) {
-        var queryString = "SELECT * FROM " + table + ";";
-        connection.query(queryString, function (err, result) {
+        connection.query("SELECT * FROM burgers", function (err, result) {
             if (err) {
                 throw err;
             }
@@ -19,11 +18,12 @@ var orm = {
             callback(result);
         });
     },
-    updateOe: function (id, callback) {
-        connection.query("UPDATE burgers SET ? WHERE ?", [{
+    updateOne: function (burgerId, callback) {
+        connection.query("UPDATE burgers SET ? WHERE ?", [
+            {
             devoured: true
         }, {
-            id: id
+            id: burgerId
         }], function (err, result) {
             if (err) throw err;
             callback(result);
