@@ -2,7 +2,7 @@
     <div class="row mt-4">
         <!------------------- ORDER HERE - TOP ------------------->
         <div class="col-md-3"></div>
-        <div class="col-md-6" id="orderSection">
+        <div class="col-md-6 mb-3" id="orderSection">
             <h3>Order Here
                 <span class="far fa-hand-point-down"></span>
             </h3>
@@ -20,7 +20,8 @@
     <hr>
     <!------------ ORDER UP + BURGERS EATED - BOTTOM ------------>
     <div class="row">
-        <div class="col-md-5 mt-3 ml-5" id="eatSection">
+        <div class="col-md-1"></div>
+        <div class="col-md-5 mt-3" id="eatSection">
             <h3>Order Up</h3>
             <ul>
                 {{#each burgers}} {{#unless this.devoured}}
@@ -34,8 +35,7 @@
             </ul>
         </div>
 
-
-        <div class="col-md-6 mt-3" id="trashSection">
+        <div class="col-md-5 mt-3" id="trashSection">
             <h3>Da Burger is Eated</h3>
             <ul>
                 {{#each burgers}} {{#if this.devoured}}
@@ -47,5 +47,6 @@
                 {{/if}} {{/each}}
             </ul>
         </div>
+        <div class="col-md-1"></div>
     </div>
 </div>
