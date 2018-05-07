@@ -1,58 +1,51 @@
 <div class="container">
-    <div class="row mt-5" id="order-content">
-
-        <!------------------- ORDER HERE - LEFT SIDE ------------------->
-        <div class="col-md-5">
+    <div class="row mt-4">
+        <!------------------- ORDER HERE - TOP ------------------->
+        <div class="col-md-3"></div>
+        <div class="col-md-6" id="orderSection">
             <h3>Order Here
                 <span class="far fa-hand-point-down"></span>
             </h3>
-            <p>Order anything your heart's desire. Cheese? Do it. Pimento cheese? Do it. Ghost peppers? Sure, why not. Fried egg? Yesssssssssss!</p>
+            <p>Order anything your heart's desire. Cheese? Do it. Pimento cheese? Do it. Ghost peppers? Sure, why not. Fried
+                egg? Yesssssssssss!</p>
 
             <form class="create-form">
-
                 <div class="form-group">
                     <input type="text" class="form-control" id="orderInput">
                 </div>
-                <button type="submit" class="btn btn-dark submitOrder mt-3">Submit</button>
-
+                <button type="submit" class="btn btn-dark btn-lg submitOrder float-md-right mt-2">Submit</button>
             </form>
         </div>
+    </div>
+    <hr>
+    <!------------ ORDER UP + BURGERS EATED - BOTTOM ------------>
+    <div class="row">
+        <div class="col-md-5 mt-3 ml-5" id="eatSection">
+            <h3>Order Up</h3>
+            <ul>
+                {{#each burgers}} {{#unless this.devoured}}
+                <li>
+                    {{id}}. {{burger_name}}
+                    <button type="submit" data-id="{{id}}" class="btn btn-dark btn-sm devourBtn my-3 ml-3">
+                        <i class="far fa-smile"></i> Eat it!</button>
+                </li>
 
-        <div class="col-md-1"></div>
+                {{/unless}} {{/each}}
+            </ul>
+        </div>
 
-        <!------------ ORDER UP + BURGERS EATED - RIGHT SIDE ------------>
-        <div class="col-md-6">
 
-            <div class="row mt-2">
-                <h3>Order Up</h3>
-            </div>
-            <div class="row">
-                <ul>
-                    {{#each burgers}} {{#unless this.devoured}}
-                    <li>
-                        {{burger_name}}
-                        <button type="submit" data-id="{{id}}" class="btn btn-dark devourBtn my-4 ml-3">Eat it!</button>
-                    </li>
-
-                    {{/unless}} {{/each}}
-                </ul>
-            </div>
-            <br>
-            <br>
-            <div class="row">
-                <h3>Da Burger is Eated</h3>
-            </div>
-            <div class="row">
-                <ul>
-                    {{#each burgers}} {{#if this.devoured}}
-                    <li>
-                        {{burger_name}}
-                        <button type="button" data-id="{{id}}" class="btn btn-dark deleteBtn mb-3 ml-3">Trash it</button>
-                    </li>
-                    {{/if}} {{/each}}
-                </ul>
-            </div>
-
+        <div class="col-md-6 mt-3" id="trashSection">
+            <h3>Da Burger is Eated</h3>
+            <ul>
+                {{#each burgers}} {{#if this.devoured}}
+                <li>
+                    {{id}}. {{burger_name}}
+                    <button type="button" data-id="{{id}}" class="btn btn-dark btn-sm deleteBtn my-3 ml-3">
+                        <i class="far fa-trash-alt"></i> Trash it</button>
+                </li>
+                {{/if}} {{/each}}
+            </ul>
         </div>
     </div>
 </div>

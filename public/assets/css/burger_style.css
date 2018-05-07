@@ -1,22 +1,24 @@
 body {
     font-family: 'Titillium Web', sans-serif;
     color: #fceed9;
-    background-color: #D63C4C;
+    background-color: #E43B50;
     background-image: linear-gradient(
     to right,
     #EF5760,
-    #D63C4C,
+    #E43B50,
     #ED1C24)
 
 }
 
-#order-content h3 {
+h3 {
     font-family: 'Rubik Mono One', sans-serif;
     color: #fceed9;
     z-index: 1;
 }
 
-.devourBtn {
+#eatSection,
+#trashSection,
+#orderSection {
     z-index: 10;
 }
 
@@ -30,11 +32,10 @@ body {
     z-index: 0;
 }
 
-#order-content span {
+span {
     font-size: 40px;
 }
 
-textarea {
-    width: 450px;
-    resize: none;
+#eatenSection {
+    padding: 0px 0px 0px 15px;
 }
