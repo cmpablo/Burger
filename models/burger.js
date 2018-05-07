@@ -9,18 +9,22 @@ var burger = {
     },
 
     insertOne: function (cols, vals, callback) {
-        orm.insertOne("burgers", cols, vals, function(res) {
+        orm.insertOne("burgers", cols, vals, function (res) {
             callback(res);
         });
     },
 
-    updateOne: function(objColVals, condition, callback) {
-        orm.updateOne("burgers", objColVals, condition, function(res) {
+    updateOne: function (objColVals, condition, callback) {
+        orm.updateOne("burgers", objColVals, condition, function (res) {
             callback(res);
         });
+    },
+
+    delete: function (condition, cb) {
+        orm.delete("burgers", condition, function (res) {
+            cb(res);
+        });
     }
-    
-    // delete: function(condition, callback)
 };
 
 module.exports = burger;

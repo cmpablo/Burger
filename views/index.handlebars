@@ -6,14 +6,14 @@
             <h3>Order Here
                 <span class="far fa-hand-point-down"></span>
             </h3>
-            <p>Order anything your heart's desire. Cheese? Do it. Mushrooms? Do it. Foie gras? Sure, why not. Fried egg? Yesssssssssss!</p>
+            <p>Order anything your heart's desire. Cheese? Do it. Pimento cheese? Do it. Ghost peppers? Sure, why not. Fried egg? Yesssssssssss!</p>
 
             <form class="create-form">
 
                 <div class="form-group">
-                    <textarea class="form-control" id="orderInput" rows="1"></textarea>
+                    <input type="text" class="form-control" id="orderInput">
                 </div>
-                <button type="submit" class="btn btn-dark mt-3" id="submitOrder">Submit</button>
+                <button type="submit" class="btn btn-dark submitOrder mt-3">Submit</button>
 
             </form>
         </div>
@@ -30,9 +30,10 @@
                 <ul>
                     {{#each burgers}} {{#unless this.devoured}}
                     <li>
-                        <p>{{this.id}}. {{this.burger_name}}</p>
-                        <button type="submit" data-id="{{this.id}}" class="btn btn-dark mb-3 ml-3" id="devourBtn">Eat it!</button>
+                        {{burger_name}}
+                        <button type="submit" data-id="{{id}}" class="btn btn-dark devourBtn mb-3 ml-3">Eat it!</button>
                     </li>
+
                     {{/unless}} {{/each}}
                 </ul>
             </div>
@@ -45,8 +46,8 @@
                 <ul>
                     {{#each burgers}} {{#if this.devoured}}
                     <li>
-                        <p>{{this.id}}. {{this.burger_name}}</p>
-                        {{!-- <button data-id="{{this.id}}" class="deleteBtn">Delete</button> --}}
+                        {{burger_name}}
+                        <button type="button" data-id="{{id}}" class="btn btn-dark deleteBtn mb-3 ml-3">Trash it</button>
                     </li>
                     {{/if}} {{/each}}
                 </ul>
